@@ -25,10 +25,10 @@ class HomeTests(TestCase):
 
 class BoardTopicsTests(TestCase):
     def setUp(self):
-        Board.objects.create(name="Django", description="Django board")
+        self.board = Board.objects.create(name="Django", description="Django board")
     
     def test_board_topics_view_success_status_code(self):
-        url= reverse('board_topics', kwargs={'pk': 1})
+        url= reverse('board_topics', kwargs={'pk': self.board.pk})
         response= self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
